@@ -1,0 +1,13 @@
+.searchBar {
+    transition: none;
+
+    input:focus-visible {
+        outline-width: 3px;
+        outline-style: solid;
+        outline-color: light-dark(
+            var(--mantine-color-blue-6),
+            var(--mantine-color-blue-6)
+        );
+        border-color: transparent;
+    }
+}

@@ -1,0 +1,11 @@
+.header {
+    background-color: light-dark(
+        var(--mantine-color-red-8),
+        var(--mantine-color-red-9)
+    );
+}
+
+.h1 {
+    color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9));
+    font-weight: normal;
+}
