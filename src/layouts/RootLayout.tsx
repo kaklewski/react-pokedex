@@ -36,7 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                         size="sm"
                     />
                     <Group justify="space-between" style={{ flex: 1 }}>
-                        <Link to="/">React Pokédex</Link>
+                        <Logo />
                         <Group ml="xl" gap={0} visibleFrom="sm">
                             <NavButtons />
                         </Group>
@@ -86,5 +86,20 @@ function Footer() {
                 Oskar Kąklewski
             </Anchor>
         </Paper>
+    );
+}
+
+function Logo() {
+    return (
+        <Anchor
+            component={Link}
+            to="/"
+            variant="gradient"
+            gradient={{ from: 'red', to: 'yellow' }}
+            fz="xl"
+            fw={700}
+        >
+            React Pokédex
+        </Anchor>
     );
 }
