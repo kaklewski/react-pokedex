@@ -2,7 +2,7 @@ import { Container, Stack } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 import axios from 'axios';
-import GalleryCard from '../Home/components/GalleryCard';
+import GalleryCard from './components/GalleryCard';
 import { MetricsCard } from './components/MetricsCard';
 import MovesCard from './components/MovesCard';
 import StatsCard from './components/StatsCard';

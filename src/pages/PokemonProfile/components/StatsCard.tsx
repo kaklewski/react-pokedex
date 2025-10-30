@@ -1,4 +1,4 @@
-import { Box, Progress, Stack, Text, Title } from '@mantine/core';
+import { Box, Progress, Stack, Text } from '@mantine/core';
 import PaperCardSection from '../../../components/PaperCardSection';
 import { capitalizeFirstLetter } from '../../../utils/helpers';
 
@@ -32,10 +32,7 @@ export default function StatsCard({ stats }: StatsCardProps) {
     };
 
     return (
-        <PaperCardSection>
-            <Title order={2} mb="md">
-                Stats
-            </Title>
+        <PaperCardSection title="Stats">
             <Stack gap="md">
                 {stats.map((stat) => {
                     return (

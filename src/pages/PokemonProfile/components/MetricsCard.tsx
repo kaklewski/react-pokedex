@@ -1,4 +1,4 @@
-import { Group, Paper, Stack, Text, Title } from '@mantine/core';
+import { Group, Paper, Stack, Text } from '@mantine/core';
 import PaperCardSection from '../../../components/PaperCardSection';
 import { capitalizeFirstLetter } from '../../../utils/helpers';
 
@@ -15,11 +15,8 @@ type MetricsDisplayProps = {
 
 export function MetricsCard({ height, weight }: MetricsCarsProps) {
     return (
-        <PaperCardSection>
-            <Title order={2} mb="md">
-                Size
-            </Title>
-            <Group justify="space-around">
+        <PaperCardSection title="Metrics">
+            <Group justify="space-evenly">
                 <MetricsDisplay text="Height" value={height * 10} unit="cm" />
                 <MetricsDisplay text="Weight" value={weight / 10} unit="kg" />
             </Group>

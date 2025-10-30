@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { Box, Center, Image, Title } from '@mantine/core';
+import { Box, Center, Image } from '@mantine/core';
 import PaperCardSection from '../../../components/PaperCardSection';
 
 type GalleryCardProps = {
@@ -25,10 +25,7 @@ export default function GalleryCard({ sprites }: GalleryCardProps) {
     );
 
     return (
-        <PaperCardSection>
-            <Title order={2} mb="md">
-                Gallery
-            </Title>
+        <PaperCardSection title="Gallery">
             <Box>
                 <Carousel
                     withControls

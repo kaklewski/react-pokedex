@@ -1,4 +1,4 @@
-import { Badge, Flex, Spoiler, Title } from '@mantine/core';
+import { Badge, Flex, Spoiler } from '@mantine/core';
 import PaperCardSection from '../../../components/PaperCardSection';
 
 type MoveItem = {
@@ -14,10 +14,7 @@ type MovesCardProps = {
 
 export default function MovesCard({ moves }: MovesCardProps) {
     return (
-        <PaperCardSection>
-            <Title order={2} mb="md">
-                Moves
-            </Title>
+        <PaperCardSection title="Moves">
             <Spoiler maxHeight={90} showLabel="Show more" hideLabel="Hide">
                 <Flex direction="row" wrap="wrap" gap="sm">
                     {moves.map((moveItem: MoveItem) => (
