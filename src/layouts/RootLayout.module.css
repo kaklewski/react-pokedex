@@ -1,15 +1,3 @@
-.navBtn {
-    padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
-    border-radius: var(--mantine-radius-md);
-
-    &:hover {
-        background-color: light-dark(
-            var(--mantine-color-gray-1),
-            var(--mantine-color-dark-6)
-        );
-    }
-}
-
 .rootLayout {
     min-height: 100vh;
     background-color: light-dark(
