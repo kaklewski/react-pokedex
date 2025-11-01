@@ -1,6 +1,6 @@
 import { Container, SimpleGrid } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { fetchAllPokemon } from '../../../api/pokemonApi';
 import PokemonCard from './PokemonCard';
 
 type PokemonGridProps = {
@@ -8,24 +8,6 @@ type PokemonGridProps = {
 };
 
 export default function PokemonGrid({ searchTerm }: PokemonGridProps) {
-    const API_URL = 'https://pokeapi.co/api/v2/pokemon?limit=151';
-
-    async function fetchAllPokemon() {
-        const res = await axios.get(API_URL);
-        const results = res.data.results;
-
-        const details = results.map(
-            (pokemon: { name: string; url: string }, index: number) => {
-                return {
-                    id: index + 1,
-                    name: pokemon.name,
-                };
-            },
-        );
-
-        return details;
-    }
-
     const { data, isLoading, isError } = useQuery({
         queryKey: ['pokemon'],
         queryFn: fetchAllPokemon,
