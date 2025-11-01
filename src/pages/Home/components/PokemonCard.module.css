@@ -1,11 +1,11 @@
 .card {
-    transition: transform 0.2s;
-    
+    transition: transform 0.15s ease-in-out;
+
     &:hover {
-        transform: scale(1.03);
+        transform: scale(1.02);
     }
 
-     &:focus-visible {
+    &:focus-visible {
         outline: 3px solid
             light-dark(var(--mantine-color-blue-6), var(--mantine-color-blue-6));
         border-color: transparent;
