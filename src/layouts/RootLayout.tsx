@@ -4,19 +4,37 @@ import {
     Burger,
     Group,
     Paper,
+    Stack,
     UnstyledButton,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Link } from '@tanstack/react-router';
-import classes from './RootLayout.module.css';
+import { Link, useLocation, useRouterState } from '@tanstack/react-router';
+import { useEffect } from 'react';
 import ThemeSelect from '../components/ThemeSelect';
+import classes from './RootLayout.module.css';
 
 type RootLayoutProps = {
     children: React.ReactNode;
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
+    const routerState = useRouterState();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [routerState.location.pathname]);
+
+    return (
+        <Stack className={classes.rootLayout}>
+            <AppShellLayout>{children}</AppShellLayout>
+            <Footer />
+        </Stack>
+    );
+}
+
+function AppShellLayout({ children }: RootLayoutProps) {
     const [opened, { toggle }] = useDisclosure();
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
 
     return (
         <AppShell
@@ -26,10 +44,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 breakpoint: 'sm',
                 collapsed: { desktop: true, mobile: !opened },
             }}
-            padding="md"
+            pt={isHomePage ? 0 : 'md'}
+            pb={0}
+            px={0}
         >
             <AppShell.Header>
-                <Group h="100%" px="md">
+                <Group h="100%" px="lg">
                     <Burger
                         opened={opened}
                         onClick={toggle}
@@ -38,23 +58,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     />
                     <Group justify="space-between" style={{ flex: 1 }}>
                         <Logo />
-                        <Group ml="xl" gap={0} visibleFrom="sm">
+                        <Group ml="xl" visibleFrom="sm" onClick={toggle}>
                             <NavButtons />
                         </Group>
                     </Group>
-                    <ThemeSelect/>
+                    <ThemeSelect />
                 </Group>
             </AppShell.Header>
 
-            <AppShell.Navbar py="md" px={4}>
+            <AppShell.Navbar py="md" px={4} onClick={toggle}>
                 <NavButtons />
             </AppShell.Navbar>
 
-            <AppShell.Main px={0} pb={0} className={classes.main}>
-                {children}
-
-                <Footer />
-            </AppShell.Main>
+            <AppShell.Main>{children}</AppShell.Main>
         </AppShell>
     );
 }
@@ -76,15 +92,26 @@ function Footer() {
         <Paper
             withBorder
             p="md"
-            mt="md"
             radius={0}
             ta="center"
             fz="sm"
             color="dimmed"
-            style={{ borderLeft: 0, borderRight: 0, borderBottom: 0 }}
+            style={{
+                flexShrink: 0,
+                borderLeft: 0,
+                borderRight: 0,
+                borderBottom: 0,
+            }}
         >
             {`© ${new Date().getFullYear()} `}
-            <Anchor href="http://kaklewski.pl" fz="sm">
+            <Anchor
+                href="http://kaklewski.pl"
+                target="_blank"
+                rel="noopener noreferrer"
+                fz="sm"
+                variant="gradient"
+                underline="hover"
+            >
                 Oskar Kąklewski
             </Anchor>
         </Paper>
