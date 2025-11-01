@@ -13,10 +13,10 @@ type GallerySlideProps = {
 
 export default function GalleryCard({ sprites }: GalleryCardProps) {
     const combinedArtworkSprites = [
+        ...Object.values(sprites['other']['showdown']),
         ...Object.values(sprites['other']['home']),
         ...Object.values(sprites['other']['official-artwork']),
         ...Object.values(sprites['other']['dream_world']),
-        ...Object.values(sprites['other']['showdown']),
         ...Object.values(sprites),
     ];
 
@@ -30,6 +30,7 @@ export default function GalleryCard({ sprites }: GalleryCardProps) {
                 <Carousel
                     withControls
                     withIndicators
+                    initialSlide={2}
                     emblaOptions={{
                         loop: true,
                         dragFree: false,
