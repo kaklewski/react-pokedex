@@ -1,5 +1,11 @@
 .searchBar {
     transition: none;
+    input {
+        background-color: light-dark(
+            var(--mantine-color-gray-1),
+            var(--mantine-color-dark-8)
+        );
+    }
 
     input:focus-visible {
         outline-width: 3px;
