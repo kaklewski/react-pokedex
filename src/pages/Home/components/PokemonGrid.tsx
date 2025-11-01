@@ -1,6 +1,7 @@
 import { Container, SimpleGrid } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPokemon } from '../../../api/pokemonApi';
+import GlobalLoader from '../../../components/GlobalLoader';
 import PokemonCard from './PokemonCard';
 
 type PokemonGridProps = {
@@ -13,7 +14,7 @@ export default function PokemonGrid({ searchTerm }: PokemonGridProps) {
         queryFn: fetchAllPokemon,
     });
 
-    if (isLoading) return <p>Loading</p>;
+    if (isLoading) return <GlobalLoader />;
     if (isError) return <p>Error fetching data</p>;
     if (!data) return <p>No data available</p>;
 
