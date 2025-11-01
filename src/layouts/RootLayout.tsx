@@ -9,6 +9,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { Link } from '@tanstack/react-router';
 import classes from './RootLayout.module.css';
+import ThemeSelect from '../components/ThemeSelect';
 
 type RootLayoutProps = {
     children: React.ReactNode;
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                             <NavButtons />
                         </Group>
                     </Group>
+                    <ThemeSelect/>
                 </Group>
             </AppShell.Header>
 
