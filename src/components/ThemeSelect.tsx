@@ -20,6 +20,8 @@ export default function ThemeSelect() {
                     color="light"
                     variant="subtle"
                     aria-label="Change theme"
+                    size='xl'
+                    radius='md'
                 >
                     {currentTheme === 'auto' && <IconBrightnessFilled />}
                     {currentTheme === 'light' && <IconSun />}
