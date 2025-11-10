@@ -2,7 +2,7 @@ import { Button, Container, Stack, Text, Title } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { Link } from '@tanstack/react-router';
 
-export function NotFound() {
+export default function NotFound() {
     return (
         <Container>
             <Stack align="center" justify="center" style={{ height: '80vh' }}>
