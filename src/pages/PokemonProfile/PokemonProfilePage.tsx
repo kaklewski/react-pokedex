@@ -2,6 +2,7 @@ import { Container, Stack } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 import { fetchPokemonData } from '../../api/pokemonApi';
+import { ErrorFallback } from '../../components/ErrorFallback';
 import GlobalLoader from '../../components/GlobalLoader';
 import GalleryCard from './components/GalleryCard';
 import { MetricsCard } from './components/MetricsCard';
@@ -24,7 +25,7 @@ export default function PokemonProfilePage() {
     });
 
     if (isLoading) return <GlobalLoader />;
-    if (isError) return <p>Error fetching data</p>;
+    if (isError) return <ErrorFallback />;
     if (!pokemonData) return <p>No data available</p>;
 
     const types = pokemonData.types.map(

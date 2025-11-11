@@ -1,6 +1,7 @@
 import { Container, SimpleGrid } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllPokemon } from '../../../api/pokemonApi';
+import { ErrorFallback } from '../../../components/ErrorFallback';
 import GlobalLoader from '../../../components/GlobalLoader';
 import PokemonCard from './PokemonCard';
 
@@ -15,7 +16,7 @@ export default function PokemonGrid({ searchTerm }: PokemonGridProps) {
     });
 
     if (isLoading) return <GlobalLoader />;
-    if (isError) return <p>Error fetching data</p>;
+    if (isError) return <ErrorFallback />;
     if (!data) return <p>No data available</p>;
 
     const filteredData = data.filter((pokemon: { id: number; name: string }) =>
