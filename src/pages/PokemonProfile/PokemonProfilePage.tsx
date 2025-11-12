@@ -1,4 +1,4 @@
-import { Container, Stack } from '@mantine/core';
+import { Container, Flex, Stack } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 import { fetchPokemonData } from '../../api/pokemonApi';
@@ -9,6 +9,7 @@ import { MetricsCard } from './components/MetricsCard';
 import MovesCard from './components/MovesCard';
 import StatsCard from './components/StatsCard';
 import { SummaryCard } from './components/SummaryCard';
+import FavButton from '../../components/FavButton';
 
 type typeModel = { slot: number; type: { name: string; url: string } };
 
@@ -35,6 +36,7 @@ export default function PokemonProfilePage() {
     return (
         <Container>
             <Stack gap="md">
+                <Flex justify="end"><FavButton pokemonId={pokemonData.id}/></Flex>
                 <SummaryCard
                     id={pokemonData.id}
                     name={pokemonData.name}
