@@ -22,3 +22,11 @@ export async function fetchPokemonData(name: string) {
     const res = await axios.get(`${API_URL}/${name}`);
     return res.data;
 }
+
+export async function fetchMultiplePokemonData(ids: number[]) {
+    const promises = ids.map((id) =>
+        axios.get(`${API_URL}/${id}`).then((res) => res.data),
+    );
+    const results = await Promise.all(promises);
+    return results;
+}

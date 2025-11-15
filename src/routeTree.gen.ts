@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PokemonIndexRouteImport } from './routes/pokemon/index'
+import { Route as FavoritesIndexRouteImport } from './routes/favorites/index'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as PokemonNameRouteImport } from './routes/pokemon/$name'
 
@@ -30,6 +31,11 @@ const PokemonIndexRoute = PokemonIndexRouteImport.update({
   path: '/pokemon/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FavoritesIndexRoute = FavoritesIndexRouteImport.update({
+  id: '/favorites/',
+  path: '/favorites/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutIndexRoute = AboutIndexRouteImport.update({
   id: '/about/',
   path: '/about/',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/$': typeof SplatRoute
   '/pokemon/$name': typeof PokemonNameRoute
   '/about': typeof AboutIndexRoute
+  '/favorites': typeof FavoritesIndexRoute
   '/pokemon': typeof PokemonIndexRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/$': typeof SplatRoute
   '/pokemon/$name': typeof PokemonNameRoute
   '/about': typeof AboutIndexRoute
+  '/favorites': typeof FavoritesIndexRoute
   '/pokemon': typeof PokemonIndexRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,28 @@ export interface FileRoutesById {
   '/$': typeof SplatRoute
   '/pokemon/$name': typeof PokemonNameRoute
   '/about/': typeof AboutIndexRoute
+  '/favorites/': typeof FavoritesIndexRoute
   '/pokemon/': typeof PokemonIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$' | '/pokemon/$name' | '/about' | '/pokemon'
+  fullPaths:
+    | '/'
+    | '/$'
+    | '/pokemon/$name'
+    | '/about'
+    | '/favorites'
+    | '/pokemon'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/pokemon/$name' | '/about' | '/pokemon'
-  id: '__root__' | '/' | '/$' | '/pokemon/$name' | '/about/' | '/pokemon/'
+  to: '/' | '/$' | '/pokemon/$name' | '/about' | '/favorites' | '/pokemon'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/pokemon/$name'
+    | '/about/'
+    | '/favorites/'
+    | '/pokemon/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +98,7 @@ export interface RootRouteChildren {
   SplatRoute: typeof SplatRoute
   PokemonNameRoute: typeof PokemonNameRoute
   AboutIndexRoute: typeof AboutIndexRoute
+  FavoritesIndexRoute: typeof FavoritesIndexRoute
   PokemonIndexRoute: typeof PokemonIndexRoute
 }
 
@@ -102,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PokemonIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/favorites/': {
+      id: '/favorites/'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about/': {
       id: '/about/'
       path: '/about'
@@ -124,6 +154,7 @@ const rootRouteChildren: RootRouteChildren = {
   SplatRoute: SplatRoute,
   PokemonNameRoute: PokemonNameRoute,
   AboutIndexRoute: AboutIndexRoute,
+  FavoritesIndexRoute: FavoritesIndexRoute,
   PokemonIndexRoute: PokemonIndexRoute,
 }
 export const routeTree = rootRouteImport
