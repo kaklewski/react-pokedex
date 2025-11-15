@@ -1,15 +1,16 @@
-import { Container, Flex, Stack } from '@mantine/core';
+import { Breadcrumbs, Container, Flex, Stack } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 import { fetchPokemonData } from '../../api/pokemonApi';
 import { ErrorFallback } from '../../components/ErrorFallback';
+import FavButton from '../../components/FavButton';
 import GlobalLoader from '../../components/GlobalLoader';
+import { capitalizeFirstLetter } from '../../utils/helpers';
 import GalleryCard from './components/GalleryCard';
 import { MetricsCard } from './components/MetricsCard';
 import MovesCard from './components/MovesCard';
 import StatsCard from './components/StatsCard';
 import { SummaryCard } from './components/SummaryCard';
-import FavButton from '../../components/FavButton';
 
 type typeModel = { slot: number; type: { name: string; url: string } };
 
@@ -36,7 +37,13 @@ export default function PokemonProfilePage() {
     return (
         <Container>
             <Stack gap="md">
-                <Flex justify="end"><FavButton pokemonId={pokemonData.id}/></Flex>
+                <Flex justify="space-between" align="center">
+                    <Breadcrumbs>
+                        Pokémon
+                        {capitalizeFirstLetter(pokemonData.name)}
+                    </Breadcrumbs>
+                    <FavButton pokemonId={pokemonData.id} />
+                </Flex>
                 <SummaryCard
                     id={pokemonData.id}
                     name={pokemonData.name}
