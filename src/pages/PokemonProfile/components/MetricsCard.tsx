@@ -1,6 +1,10 @@
 import { Group, Paper, Stack, Text } from '@mantine/core';
 import PaperCardSection from '../../../components/PaperCardSection';
-import { capitalizeFirstLetter } from '../../../utils/helpers';
+import {
+    capitalizeFirstLetter,
+    convertDmToCm,
+    convertHgToKg,
+} from '../../../utils/helpers';
 
 type MetricsCarsProps = {
     height: number;
@@ -17,8 +21,16 @@ export function MetricsCard({ height, weight }: MetricsCarsProps) {
     return (
         <PaperCardSection title="Metrics">
             <Group justify="space-evenly">
-                <MetricsDisplay text="Height" value={height * 10} unit="cm" />
-                <MetricsDisplay text="Weight" value={weight / 10} unit="kg" />
+                <MetricsDisplay
+                    text="Height"
+                    value={convertDmToCm(height)}
+                    unit="cm"
+                />
+                <MetricsDisplay
+                    text="Weight"
+                    value={convertHgToKg(weight)}
+                    unit="kg"
+                />
             </Group>
         </PaperCardSection>
     );
