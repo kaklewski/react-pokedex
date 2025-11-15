@@ -1,6 +1,7 @@
 import { Button } from '@mantine/core';
 import { IconHeart, IconHeartFilled } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import { showNotification } from '../utils/notifications';
 
 type FavButtonProps = {
     pokemonId: number;
@@ -24,10 +25,12 @@ export default function FavButton({ pokemonId }: FavButtonProps) {
         if (favorites.includes(pokemonId)) {
             favorites = favorites.filter((id) => id !== pokemonId);
             setIsFavorite(false);
+            showNotification('removeFromFav');
         } else {
             favorites.push(pokemonId);
             favorites.sort();
             setIsFavorite(true);
+            showNotification('addToFav');
         }
 
         localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -42,7 +45,7 @@ export default function FavButton({ pokemonId }: FavButtonProps) {
                     <IconHeart size={18} />
                 )
             }
-            variant={isFavorite ? 'filled' : 'light'}
+            variant={isFavorite ? 'light' : 'filled'}
             color="red"
             radius="xl"
             onClick={toggleFavorite}
