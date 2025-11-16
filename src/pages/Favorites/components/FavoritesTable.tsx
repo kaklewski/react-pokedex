@@ -30,14 +30,17 @@ export default function FavoritesTable() {
         const height = convertDmToCm(pokemon.height);
         const weight = convertHgToKg(pokemon.weight);
         const types = pokemon.types
-            .map((element: any) => capitalizeFirstLetter(element.type.name))
+            .map((element: unknown) => {
+                const e = element as { type: { name: string } };
+                return capitalizeFirstLetter(e.type.name);
+            })
             .join(', ');
         const img = pokemon.sprites.front_default;
 
         return (
             <Table.Tr key={pokemon.id}>
                 <Table.Td>
-                    <Image src={img} h={64} w="auto" />
+                    <Image src={img} h={96} w="auto" />
                 </Table.Td>
                 <Table.Td>{id}</Table.Td>
                 <Table.Td>
@@ -49,26 +52,28 @@ export default function FavoritesTable() {
                 <Table.Td>{height}</Table.Td>
                 <Table.Td>{weight}</Table.Td>
                 <Table.Td>
-                    <FavButton pokemonId={pokemon.id} />
+                    <FavButton pokemonId={pokemon.id} isIcon={true} />
                 </Table.Td>
             </Table.Tr>
         );
     });
 
     return (
-        <Table striped>
-            <Table.Thead>
-                <Table.Tr>
-                    <Table.Th></Table.Th>
-                    <Table.Th>#</Table.Th>
-                    <Table.Th>Name</Table.Th>
-                    <Table.Th>Types</Table.Th>
-                    <Table.Th>Height [cm]</Table.Th>
-                    <Table.Th>Weight [kg]</Table.Th>
-                    <Table.Th></Table.Th>
-                </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>{tableRows}</Table.Tbody>
-        </Table>
+        <Table.ScrollContainer minWidth={'30em'}>
+            <Table striped withTableBorder>
+                <Table.Thead>
+                    <Table.Tr>
+                        <Table.Th></Table.Th>
+                        <Table.Th>#</Table.Th>
+                        <Table.Th>Name</Table.Th>
+                        <Table.Th>Types</Table.Th>
+                        <Table.Th>Height [cm]</Table.Th>
+                        <Table.Th>Weight [kg]</Table.Th>
+                        <Table.Th></Table.Th>
+                    </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>{tableRows}</Table.Tbody>
+            </Table>
+        </Table.ScrollContainer>
     );
 }
