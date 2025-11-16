@@ -1,13 +1,18 @@
-import { Button } from '@mantine/core';
+import { ActionIcon, Button, Tooltip } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { IconHeart, IconHeartFilled } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { showNotification } from '../utils/notifications';
 
 type FavButtonProps = {
     pokemonId: number;
+    isIcon?: boolean;
 };
 
-export default function FavButton({ pokemonId }: FavButtonProps) {
+export default function FavButton({
+    pokemonId,
+    isIcon = false,
+}: FavButtonProps) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
@@ -17,6 +22,8 @@ export default function FavButton({ pokemonId }: FavButtonProps) {
             setIsFavorite(favorites.includes(pokemonId));
         }
     }, [pokemonId]);
+
+    const isMobile = useMediaQuery('(max-width: 48em)');
 
     function toggleFavorite() {
         const stored = localStorage.getItem('favorites');
@@ -36,21 +43,49 @@ export default function FavButton({ pokemonId }: FavButtonProps) {
         localStorage.setItem('favorites', JSON.stringify(favorites));
     }
 
-    return (
-        <Button
-            leftSection={
-                isFavorite ? (
-                    <IconHeartFilled size={18} />
-                ) : (
-                    <IconHeart size={18} />
-                )
-            }
-            variant={isFavorite ? 'light' : 'filled'}
-            color="red"
-            radius="xl"
-            onClick={toggleFavorite}
-        >
-            {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        </Button>
+    const buttonIcon = isFavorite ? (
+        <IconHeartFilled size={18} />
+    ) : (
+        <IconHeart size={18} />
     );
+
+    const buttonVariant = isFavorite ? 'light' : 'filled';
+    const buttonColor = 'red';
+    const buttonRadius = 'xl';
+    const buttonLabel = isFavorite
+        ? 'Remove from favorites'
+        : 'Add to favorites';
+
+    if (isIcon || isMobile) {
+        return (
+            <Tooltip
+                label={buttonLabel}
+                withArrow
+                position="bottom"
+                transitionProps={{ transition: 'pop', duration: 250 }}
+            >
+                <ActionIcon
+                    onClick={toggleFavorite}
+                    variant={buttonVariant}
+                    color={buttonColor}
+                    radius={buttonRadius}
+                    size="lg"
+                >
+                    {buttonIcon}
+                </ActionIcon>
+            </Tooltip>
+        );
+    } else {
+        return (
+            <Button
+                leftSection={buttonIcon}
+                variant={buttonVariant}
+                color={buttonColor}
+                radius={buttonRadius}
+                onClick={toggleFavorite}
+            >
+                {buttonLabel}
+            </Button>
+        );
+    }
 }
