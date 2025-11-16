@@ -5,6 +5,7 @@ import { fetchPokemonData } from '../../api/pokemonApi';
 import { ErrorFallback } from '../../components/ErrorFallback';
 import FavButton from '../../components/FavButton';
 import GlobalLoader from '../../components/GlobalLoader';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 import GalleryCard from './components/GalleryCard';
 import { MetricsCard } from './components/MetricsCard';
@@ -16,6 +17,8 @@ type typeModel = { slot: number; type: { name: string; url: string } };
 
 export default function PokemonProfilePage() {
     const { name } = useParams({ from: '/pokemon/$name' });
+
+    useDocumentTitle(capitalizeFirstLetter(name));
 
     const {
         data: pokemonData,

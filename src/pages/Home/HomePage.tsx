@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import PokemonGrid from './components/PokemonGrid';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 import Header from './components/Header';
+import PokemonGrid from './components/PokemonGrid';
 
 export default function HomePage() {
     const [searchTerm, setSearchTerm] = useState('');
+
+    useDocumentTitle();
 
     return (
         <>
