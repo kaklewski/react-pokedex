@@ -1,5 +1,14 @@
-import { Anchor, AppShell, Burger, Group, UnstyledButton } from '@mantine/core';
+import {
+    Anchor,
+    AppShell,
+    Burger,
+    Flex,
+    Group,
+    Text,
+    UnstyledButton,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { IconPokeball } from '@tabler/icons-react';
 import { Link, useLocation } from '@tanstack/react-router';
 import ThemeSelect from '../components/ThemeSelect';
 import classes from './AppShellLayout.module.css';
@@ -40,7 +49,7 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
                     />
                     <Group justify="space-between" style={{ flex: 1 }}>
                         <NavLogo />
-                        <Group ml="xl" visibleFrom="sm" onClick={toggle}>
+                        <Group gap="xs" ml="xl" visibleFrom="sm" onClick={toggle}>
                             <NavButtons />
                         </Group>
                     </Group>
@@ -59,16 +68,20 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
 
 function NavLogo() {
     return (
-        <Anchor
-            component={Link}
-            to="/"
-            variant="gradient"
-            gradient={{ from: 'red', to: 'yellow' }}
-            fz="xl"
-            fw={700}
-        >
-            React Pokédex
-        </Anchor>
+        <>
+            <Anchor component={Link} to="/" underline="never">
+                <Flex align="end" gap={4}>
+                    <IconPokeball size={32} className={classes.logoSygnet} />
+                    <Text
+                        variant="gradient"
+                        gradient={{ from: 'red', to: 'yellow' }}
+                        className={classes.logoText}
+                    >
+                        React Pokédex
+                    </Text>
+                </Flex>
+            </Anchor>
+        </>
     );
 }
 

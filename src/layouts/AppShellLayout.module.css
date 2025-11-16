@@ -1,11 +1,22 @@
+.logoSygnet {
+    color: light-dark(var(--mantine-color-red-6), var(--mantine-color-red-7));
+    transform: rotate(-30deg);
+}
+
+.logoText {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
 .navBtn {
     padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
     border-radius: var(--mantine-radius-md);
 
     &:hover {
         background-color: light-dark(
-            var(--mantine-color-gray-1),
-            var(--mantine-color-dark-6)
+            var(--mantine-color-gray-3),
+            var(--mantine-color-dark-8)
         );
     }
 }
