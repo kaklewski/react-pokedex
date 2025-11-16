@@ -1,6 +1,12 @@
+.logo:hover {
+    .logoSygnet {
+        animation: roll 1.2s ease-in-out;
+    }
+}
+
 .logoSygnet {
     color: light-dark(var(--mantine-color-red-6), var(--mantine-color-red-7));
-    transform: rotate(-30deg);
+    transform: rotate(-25deg);
 }
 
 .logoText {
@@ -18,5 +24,23 @@
             var(--mantine-color-gray-3),
             var(--mantine-color-dark-8)
         );
+    }
+}
+
+@keyframes roll {
+    0% {
+        transform: rotate(-25deg);
+    }
+    30% {
+        transform: rotate(28deg);
+    }
+    55% {
+        transform: rotate(20deg);
+    }
+    95% {
+        transform: rotate(-32deg);
+    }
+    100% {
+        transform: rotate(-25deg);
     }
 }

@@ -69,7 +69,7 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
 function NavLogo() {
     return (
         <>
-            <Anchor component={Link} to="/" underline="never">
+            <Anchor component={Link} to="/" underline="never" className={classes.logo}>
                 <Flex align="end" gap={4}>
                     <IconPokeball size={32} className={classes.logoSygnet} />
                     <Text
