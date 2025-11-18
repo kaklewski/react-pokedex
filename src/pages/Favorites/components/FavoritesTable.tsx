@@ -13,11 +13,16 @@ import {
 
 export default function FavoritesTable() {
     const stored = localStorage.getItem('favorites');
-    const favIds: number[] = stored ? JSON.parse(stored) : [];
+    const favIds: number[] = stored
+        ? JSON.parse(stored).sort((a: number, b: number) => a - b)
+        : [];
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ['favoritePokemonData'],
         queryFn: () => fetchMultiplePokemonData(favIds),
+        staleTime: 1000,
+        gcTime: 1000,
+        refetchOnMount: true,
     });
 
     if (isLoading) return <GlobalLoader />;
