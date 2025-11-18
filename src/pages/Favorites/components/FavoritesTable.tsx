@@ -1,4 +1,4 @@
-import { Anchor, Image, Table } from '@mantine/core';
+import { Anchor, Image, Table, Text } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { fetchMultiplePokemonData } from '../../../api/pokemonApi';
@@ -63,7 +63,7 @@ export default function FavoritesTable() {
         );
     });
 
-    return (
+    return favIds.length > 0 ? (
         <Table.ScrollContainer minWidth={'30em'}>
             <Table striped withTableBorder>
                 <Table.Thead>
@@ -80,5 +80,7 @@ export default function FavoritesTable() {
                 <Table.Tbody>{tableRows}</Table.Tbody>
             </Table>
         </Table.ScrollContainer>
+    ) : (
+        <Text>There are no Pokémon added to favorites.</Text>
     );
 }
