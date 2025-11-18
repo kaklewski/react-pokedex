@@ -11,7 +11,7 @@ type PokemonGridProps = {
 
 export default function PokemonGrid({ searchTerm }: PokemonGridProps) {
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['pokemon'],
+        queryKey: ['pokemonList'],
         queryFn: fetchAllPokemon,
     });
 

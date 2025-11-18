@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 export async function fetchAllPokemon() {
-    const res = await axios.get(`${API_URL}?limit=151`);
+    const res = await axios.get(`${API_URL}?limit=251`);
     const results = res.data.results;
 
     const details = results.map(

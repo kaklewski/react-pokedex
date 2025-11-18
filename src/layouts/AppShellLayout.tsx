@@ -10,6 +10,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { IconPokeball } from '@tabler/icons-react';
 import { Link, useLocation } from '@tanstack/react-router';
+import PokemonSpotlight from '../components/PokemonSpotlight';
 import ThemeSelect from '../components/ThemeSelect';
 import classes from './AppShellLayout.module.css';
 
@@ -19,7 +20,7 @@ type AppShellLayoutProps = {
 
 type NavButtonProps = {
     url: string;
-    name: string;
+    text: string;
 };
 
 export default function AppShellLayout({ children }: AppShellLayoutProps) {
@@ -47,13 +48,25 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
                         hiddenFrom="sm"
                         size="sm"
                     />
-                    <Group justify="space-between" style={{ flex: 1 }}>
+                    <Flex
+                        justify="space-between"
+                        align="center"
+                        style={{ flex: 1 }}
+                    >
                         <NavLogo />
-                        <Group gap="xs" ml="xl" visibleFrom="sm" onClick={toggle}>
-                            <NavButtons />
+                        <Group gap="xs">
+                            <Group
+                                gap="xs"
+                                ml="xl"
+                                visibleFrom="sm"
+                                onClick={toggle}
+                            >
+                                <NavButtons />
+                            </Group>
+                            <PokemonSpotlight />
+                            <ThemeSelect />
                         </Group>
-                    </Group>
-                    <ThemeSelect />
+                    </Flex>
                 </Group>
             </AppShell.Header>
 
@@ -69,7 +82,12 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
 function NavLogo() {
     return (
         <>
-            <Anchor component={Link} to="/" underline="never" className={classes.logo}>
+            <Anchor
+                component={Link}
+                to="/"
+                underline="never"
+                className={classes.logo}
+            >
                 <Flex align="end" gap={4}>
                     <IconPokeball size={32} className={classes.logoSygnet} />
                     <Text
@@ -88,17 +106,17 @@ function NavLogo() {
 function NavButtons() {
     return (
         <>
-            <NavButton url="/" name="Search" />
-            <NavButton url="/favorites" name="Favorites" />
-            <NavButton url="/about" name="About" />
+            <NavButton url="/" text="Home" />
+            <NavButton url="/favorites" text="Favorites" />
+            <NavButton url="/about" text="About" />
         </>
     );
 }
 
-function NavButton({ url, name }: NavButtonProps) {
+function NavButton({ url, text }: NavButtonProps) {
     return (
         <UnstyledButton component={Link} to={url} className={classes.navBtn}>
-            {name}
+            {text}
         </UnstyledButton>
     );
 }
