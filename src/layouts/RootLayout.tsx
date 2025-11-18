@@ -3,7 +3,6 @@ import { useRouterState } from '@tanstack/react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect } from 'react';
 import AppShellLayout from './AppShellLayout';
-import Footer from './Footer';
 import classes from './RootLayout.module.css';
 
 type RootLayoutProps = {
@@ -29,8 +28,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     <AppShellLayout>{children}</AppShellLayout>
                 </motion.div>
             </AnimatePresence>
-
-            <Footer />
         </Stack>
     );
 }

@@ -13,6 +13,7 @@ import { Link, useLocation } from '@tanstack/react-router';
 import PokemonSpotlight from '../components/PokemonSpotlight';
 import ThemeSelect from '../components/ThemeSelect';
 import classes from './AppShellLayout.module.css';
+import Footer from './Footer';
 
 type AppShellLayoutProps = {
     children: React.ReactNode;
@@ -74,7 +75,10 @@ export default function AppShellLayout({ children }: AppShellLayoutProps) {
                 <NavButtons />
             </AppShell.Navbar>
 
-            <AppShell.Main>{children}</AppShell.Main>
+            <AppShell.Main>
+                {children}
+                <Footer />
+            </AppShell.Main>
         </AppShell>
     );
 }
