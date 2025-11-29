@@ -40,7 +40,7 @@ export default function PokemonSpotlight() {
             <ActionIcon
                 color="light"
                 variant="subtle"
-                aria-label="Change theme"
+                aria-label="Search Pokémon"
                 size="xl"
                 radius="md"
                 onClick={spotlight.open}

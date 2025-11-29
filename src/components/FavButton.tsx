@@ -70,6 +70,7 @@ export default function FavButton({
                     color={buttonColor}
                     radius={buttonRadius}
                     size="lg"
+                    aria-label={buttonLabel}
                 >
                     {buttonIcon}
                 </ActionIcon>
