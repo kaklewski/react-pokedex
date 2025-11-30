@@ -1,8 +1,7 @@
-import { MantineProvider } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { fireEvent, render, screen } from '@testing-library/react';
-import type { ReactElement } from 'react';
+import { fireEvent, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { renderWithProviders } from '../test-utils';
 import { showNotification } from '../utils/notifications';
 import FavButton from './FavButton';
 
@@ -17,12 +16,6 @@ vi.mock('@mantine/hooks', () => ({
 const mockedUseMediaQuery = useMediaQuery as unknown as ReturnType<
     typeof vi.fn
 >;
-
-export function renderWithProviders(ui: ReactElement) {
-    return render(
-        <MantineProvider defaultColorScheme="auto">{ui}</MantineProvider>,
-    );
-}
 
 describe('FavButton', () => {
     beforeEach(() => {
