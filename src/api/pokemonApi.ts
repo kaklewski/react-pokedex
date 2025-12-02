@@ -1,9 +1,10 @@
 import axios from 'axios';
-
-const API_URL = 'https://pokeapi.co/api/v2/pokemon';
+import { API_CONFIG } from '../config/api';
 
 export async function fetchAllPokemon() {
-    const res = await axios.get(`${API_URL}?limit=251`);
+    const res = await axios.get(
+        `${API_CONFIG.BASE_URL}?limit=${API_CONFIG.INITIAL_POKEMON_LIMIT}`,
+    );
     const results = res.data.results;
 
     const details = results.map(
@@ -19,13 +20,13 @@ export async function fetchAllPokemon() {
 }
 
 export async function fetchPokemonData(name: string) {
-    const res = await axios.get(`${API_URL}/${name}`);
+    const res = await axios.get(`${API_CONFIG.BASE_URL}/${name}`);
     return res.data;
 }
 
 export async function fetchMultiplePokemonData(ids: number[]) {
     const promises = ids.map((id) =>
-        axios.get(`${API_URL}/${id}`).then((res) => res.data),
+        axios.get(`${API_CONFIG.BASE_URL}/${id}`).then((res) => res.data),
     );
     const results = await Promise.all(promises);
     return results;
