@@ -6,7 +6,7 @@ import {
     convertHgToKg,
 } from '../../../utils/helpers';
 
-type MetricsCarsProps = {
+type MetricsCardProps = {
     height: number;
     weight: number;
 };
@@ -17,7 +17,7 @@ type MetricsDisplayProps = {
     unit: string;
 };
 
-export function MetricsCard({ height, weight }: MetricsCarsProps) {
+export function MetricsCard({ height, weight }: MetricsCardProps) {
     return (
         <PaperCardSection title="Metrics">
             <Group justify="space-evenly">
