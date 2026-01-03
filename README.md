@@ -8,21 +8,29 @@ React Pokédex is a client-side application built as a sandbox for testing moder
 
 ### Screenshots
 
-**Home page - dark theme**
+### Home page – dark theme
 
-![Home page](./screenshots/home.png)
+<p align="center">
+  <img src="./screenshots/home.png" width="900" />
+</p>
 
-**Pokémon profile - dark theme**
+### Pokémon profile – dark theme
 
-![Pokémon profile](./screenshots/profile.png)
+<p align="center">
+  <img src="./screenshots/profile.png" width="900" />
+</p>
 
-**Favorites - dark theme**
+### Favorites – dark theme
 
-![Favorites](./screenshots/favorites.png)
+<p align="center">
+  <img src="./screenshots/favorites.png" width="900" />
+</p>
 
-**Profile – light theme (mobile)**
+### Profile – light theme (mobile)
 
-![Profile – light theme, mobile](./screenshots/profile-light-mobile.png)
+<p align="center">
+  <img src="./screenshots/profile-light-mobile.png" width="280" />
+</p>
 
 ## Features
 
